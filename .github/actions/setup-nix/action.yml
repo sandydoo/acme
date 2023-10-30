@@ -13,6 +13,10 @@ runs:
         restore-keys: |
           cache-${{ runner.os }}-nix-store-
 
+    - name: print PWD
+      shell: bash -e {0}
+      run: echo $PWD
+
     # - name: Create a custom shell for devenv
     #   shell: bash
     #   run: |
