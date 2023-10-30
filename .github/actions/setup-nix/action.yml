@@ -34,7 +34,10 @@ runs:
     - name: print pwd from nix develop shell
       shell: nix develop --impure --command bash -e {0}
       run: |
+        echo 'PWD'
         echo $PWD
+        echo 'nix eval getEnv'
+        nix eval --impure --expr 'builtins.getEnv "PWD"'
 
     - name: Build the devenv shell
       shell: nix develop --impure --command bash -e {0}
