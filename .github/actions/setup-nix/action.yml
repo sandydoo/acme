@@ -56,6 +56,14 @@ runs:
         nix eval --impure --expr 'builtins.getEnv "PWD"'
 
     - name: print pwd from nix develop + devenv shell
+      shell: bash -c "nix develop .#devenv --impure --command bash -e {0}"
+      run: |
+        echo 'PWD'
+        echo $PWD
+        echo 'nix eval getEnv'
+        nix eval --impure --expr 'builtins.getEnv "PWD"'
+
+    - name: print pwd from nix develop + devenv shell
       shell: nix develop .#devenv --impure --command bash -e {0}
       run: |
         echo 'PWD'
