@@ -27,14 +27,14 @@ runs:
 
     - name: print nix user conf
       shell: bash -e {0}
-      run: cat (echo $NIX_USER_CONF_FILES | sed "s/://g")
+      run: cat $(echo $NIX_USER_CONF_FILES | sed "s/://g")
 
     - name: print pwd from nix develop shell
-      shell: nix develop --impure --command bash -e {0}
+      shell: nix develop --keep "PWD" --command bash -e {0}
       run: |
         echo $PWD
         printenv
 
     - name: Build the devenv shell
-      shell: nix develop --impure --command bash -e {0}
+      shell: nix develop --keep "PWD" --command bash -e {0}
       run: echo 🚀
