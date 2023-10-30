@@ -39,11 +39,29 @@ runs:
         echo 'nix eval getEnv'
         nix eval --impure --expr 'builtins.getEnv "PWD"'
 
+    - name: Create a custom shell for devenv
+      shell: bash
+      run: |
+        mkdir -p $HOME/.local/bin
+        echo "#!/usr/bin/env bash" > $HOME/.local/bin/custom-devenv
+        echo "nix develop --impure --command bash \"\$1\"" >> $HOME/.local/bin/custom-devenv
+        chmod +x $HOME/.local/bin/custom-devenv
+
+    - name: custom devenv
+      shell: custom-devenv {0}
+      run: |
+        echo 'PWD'
+        echo $PWD
+        echo 'nix eval getEnv'
+        nix eval --impure --expr 'builtins.getEnv "PWD"'
+
     - name: print pwd from nix develop + devenv shell
       shell: nix develop .#devenv --impure --command bash -e {0}
       run: |
         echo 'PWD'
         echo $PWD
+        echo 'nix eval getEnv'
+        nix eval --impure --expr 'builtins.getEnv "PWD"'
 
     - name: Build the devenv shell
       shell: nix develop --impure --command bash -e {0}
