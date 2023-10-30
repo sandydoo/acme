@@ -34,7 +34,6 @@ runs:
     - name: print pwd from nix develop shell
       shell: nix develop --impure --command bash -e {0}
       run: |
-        printenv
         echo $PWD
 
     - name: Build the devenv shell

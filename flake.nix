@@ -21,9 +21,8 @@
         };
 
         devShells.default = pkgs.mkShell {
-          enterShell = ''
+          shellHook = ''
             echo hello shell
-            printenv
           '';
         };
 
