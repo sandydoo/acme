@@ -13,14 +13,14 @@ runs:
         restore-keys: |
           cache-${{ runner.os }}-nix-store-
 
-    - name: Create a custom shell for devenv
-      shell: bash
-      run: |
-        mkdir -p $HOME/.local/bin
-        echo "#!/usr/bin/env bash" > $HOME/.local/bin/devenv
-        echo "nix develop --impure --command bash \"\$1\"" >> $HOME/.local/bin/devenv
-        chmod +x $HOME/.local/bin/devenv
+    # - name: Create a custom shell for devenv
+    #   shell: bash
+    #   run: |
+    #     mkdir -p $HOME/.local/bin
+    #     echo "#!/usr/bin/env bash" > $HOME/.local/bin/devenv
+    #     echo "nix develop --impure --command bash \"\$1\"" >> $HOME/.local/bin/devenv
+    #     chmod +x $HOME/.local/bin/devenv
 
     - name: Build the devenv shell
-      shell: devenv {0}
+      shell: nix develop --impure --command bash -e {0}
       run: echo 🚀
