@@ -30,10 +30,10 @@ runs:
     #   run: cat $(echo $NIX_USER_CONF_FILES | sed "s/://g")
 
     - name: print pwd from nix develop shell
-      shell: nix develop --keep "PWD" --command bash -e {0}
+      shell: NIX_USER_CONF_FILES= nix develop --impure --command bash -e {0}
       run: |
-        echo $PWD
         printenv
+        echo $PWD
 
     - name: Build the devenv shell
       shell: nix develop --keep "PWD" --command bash -e {0}
