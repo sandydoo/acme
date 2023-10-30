@@ -27,7 +27,7 @@ runs:
 
     - name: print nix user conf
       shell: bash -e {0}
-      run: cat $NIX_USER_CONF_FILES
+      run: cat (echo $NIX_USER_CONF_FILES | sed "s/://g")
 
     - name: print pwd from nix develop shell
       shell: nix develop --impure --command bash -e {0}
