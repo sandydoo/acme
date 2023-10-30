@@ -19,7 +19,15 @@
           # workaround for https://github.com/cachix/devenv/issues/756
           devenv-up = self.devShells.${system}.default.config.procfileScript;
         };
-        devShells.default = devenv.lib.mkShell {
+
+        devShells.default = pkgs.mkShell {
+          enterShell = ''
+            echo hello shell
+            printenv
+          '';
+        };
+
+        devShells.devenv = devenv.lib.mkShell {
           inherit inputs pkgs;
           modules = [
             ({ pkgs, ... }:
