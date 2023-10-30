@@ -32,7 +32,7 @@ runs:
     #   run: cat $(echo $NIX_USER_CONF_FILES | sed "s/://g")
 
     - name: print pwd from nix develop shell
-      shell: NIX_USER_CONF_FILES="" nix develop --impure --command bash -e {0}
+      shell: nix develop --impure --command bash -e {0}
       run: |
         printenv
         echo $PWD
