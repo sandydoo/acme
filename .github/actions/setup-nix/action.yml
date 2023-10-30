@@ -25,6 +25,10 @@ runs:
     #     echo "nix develop --impure --command bash \"\$1\"" >> $HOME/.local/bin/devenv
     #     chmod +x $HOME/.local/bin/devenv
 
+    - name: print nix user conf
+      shell: bash -e {0}
+      run: cat $NIX_USER_CONF_FILES
+
     - name: print pwd from nix develop shell
       shell: nix develop --impure --command bash -e {0}
       run: |
