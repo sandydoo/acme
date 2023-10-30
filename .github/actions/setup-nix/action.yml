@@ -25,6 +25,12 @@ runs:
     #     echo "nix develop --impure --command bash \"\$1\"" >> $HOME/.local/bin/devenv
     #     chmod +x $HOME/.local/bin/devenv
 
+    - name: print pwd from nix develop shell
+      shell: nix develop --impure --command bash -e {0}
+      run: |
+        echo $PWD
+        printenv
+
     - name: Build the devenv shell
       shell: nix develop --impure --command bash -e {0}
       run: echo 🚀
