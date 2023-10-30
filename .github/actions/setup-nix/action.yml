@@ -44,7 +44,7 @@ runs:
       run: |
         mkdir -p $HOME/.local/bin
         echo "#!/usr/bin/env bash" > $HOME/.local/bin/custom-devenv
-        echo "nix develop --impure --command bash \"\$1\"" >> $HOME/.local/bin/custom-devenv
+        echo "nix develop --impure --command bash -e \"\$1\"" >> $HOME/.local/bin/custom-devenv
         chmod +x $HOME/.local/bin/custom-devenv
 
     - name: custom devenv
